@@ -1,12 +1,11 @@
 # Documentation
-
-Use this file to fill in your documentation
 ### Mob programmnging schema
-		1		2		3		4
-driver	edgar	elsa	cecilia	anton
-cd		elsa	edgar	anton	cecilia
-timer	cecilia	anton	edgar	elsa
-spy		anton	cecilia	elsa	edgar
+|   |  1 |  2 | 3  |  4 |
+|---|---|---|---|---|
+| driver  | edgar  | elsa  | cecilia  |  anton |
+| cd  |  anton |  edgar |  elsa |  cecilia |
+| timer  | cecilia  | anton  | edgar  | elsa  |
+| spy  | elsa  | cecilia  | anton  |  edgar |
 
 ## Dagbok
 ### 2021-03-18
@@ -15,23 +14,21 @@ Vi ska försöka hålla oss till MOB programmeringsarbetssätt.
 
 Applikation ska bli på engelska, det ska bli konsolapplikation, man använder tangentbord, menyer kommer som text i konsolen
 
-Vad behöver vi databasmässigt?
-* modell som lagrar uppgifter från användare
-** data som lagras:
-*** användares namn
-*** bostadsplanet
-*** parkerings starttid
-*** parkerings sluttid
-*** vilken spaceship
-*** kostnad
-*** betalt eller inte
-*** parkeringsplats (storlek (length), position, id, ledig/upptagen)
+* Vad behöver vi databasmässigt?
+  * användares namn
+  * bostadsplanet
+  * parkerings starttid
+  * parkerings sluttid
+  * vilken spaceship
+  * kostnad
+  * betalt eller inte
+  * parkeringsplats (storlek (length), position, id, ledig/upptagen)
 
-** Klasser/Tabeller
-*** User
-*** Parkingspot
-*** ParkingRegistration
-*** Spaceship (bara klass)
+* Klasser/Tabeller
+  * User
+  * ParkingSpot
+  * ParkingRegistration
+  * Spaceship (bara klass)
 
 Hur ser flödet ut?
 * användare ange namn
