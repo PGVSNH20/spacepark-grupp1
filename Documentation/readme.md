@@ -17,13 +17,28 @@ Vad behöver vi databasmässigt?
 *modell som lagrar uppgifter från användare
 ** data som lagras:
 *** användares namn
+*** bostadsplanet
 *** parkerings starttid
 *** parkerings sluttid
 *** vilken spaceship
 *** kostnad
 *** betalt eller inte
+*** parkeringsplats (storlek, postion, id, ledig/upptagen)
 
 Hur ser flödet ut?
 *användare ange namn
 *finns aktiv parkering?
 *vill avsluta, starta ändra parkering
+*starta (om det finns lediga platser, annars meddela fullt)
+	*ange spaceship
+	*visa lediga platser
+	*ange sluttid
+	*meddela parkering startad, position och förväntad kostnad
+*avsluta
+	*ange spaceship
+	*meddela slutpris
+	*meddela fakturaadress
+	*meddela betaldatum
+*ändra
+	*ange spaceship
+	*ange ny sluttid
