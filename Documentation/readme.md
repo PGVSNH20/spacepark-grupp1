@@ -14,7 +14,7 @@ Vi diskuterade arbetssätt och upplägg vi ska köra på.
 Vi ska försöka hålla oss till MOB programmeringsarbetssätt.
 
 Vad behöver vi databasmässigt?
-*modell som lagrar uppgifter från användare
+* modell som lagrar uppgifter från användare
 ** data som lagras:
 *** användares namn
 *** bostadsplanet
@@ -25,20 +25,27 @@ Vad behöver vi databasmässigt?
 *** betalt eller inte
 *** parkeringsplats (storlek, postion, id, ledig/upptagen)
 
+** Klasser/Tabeller
+*** User
+*** Parkingspot
+*** ParkingRegistration
+*** 
+
 Hur ser flödet ut?
-*användare ange namn
-*finns aktiv parkering?
-*vill avsluta, starta ändra parkering
-*starta (om det finns lediga platser, annars meddela fullt)
-	*ange spaceship
-	*visa lediga platser
-	*ange sluttid
-	*meddela parkering startad, position och förväntad kostnad
-*avsluta
-	*ange spaceship
-	*meddela slutpris
-	*meddela fakturaadress
-	*meddela betaldatum
-*ändra
-	*ange spaceship
-	*ange ny sluttid
+* användare ange namn
+* finns aktiv parkering?
+* vill avsluta, starta ändra parkering
+* starta (om det finns lediga platser, annars meddela fullt)
+	* ange spaceship
+	* visa lediga platser
+	* ange sluttid
+	* meddela parkering startad, position och förväntad kostnad
+* avsluta
+	* ange spaceship
+	* meddela slutpris
+	* meddela fakturaadress
+	* meddela betaldatum
+* ändra
+	* ange spaceship
+	* ange ny sluttid
+	* meddela parkering startad, position och förväntad kostnad
