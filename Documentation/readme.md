@@ -13,6 +13,8 @@ spy		anton	cecilia	elsa	edgar
 Vi diskuterade arbetssätt och upplägg vi ska köra på.
 Vi ska försöka hålla oss till MOB programmeringsarbetssätt.
 
+Applikation ska bli på engelska, det ska bli konsolapplikation, man använder tangentbord, menyer kommer som text i konsolen
+
 Vad behöver vi databasmässigt?
 * modell som lagrar uppgifter från användare
 ** data som lagras:
@@ -23,13 +25,13 @@ Vad behöver vi databasmässigt?
 *** vilken spaceship
 *** kostnad
 *** betalt eller inte
-*** parkeringsplats (storlek, postion, id, ledig/upptagen)
+*** parkeringsplats (storlek (length), position, id, ledig/upptagen)
 
 ** Klasser/Tabeller
 *** User
 *** Parkingspot
 *** ParkingRegistration
-*** 
+*** Spaceship (bara klass)
 
 Hur ser flödet ut?
 * användare ange namn
