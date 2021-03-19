@@ -13,9 +13,8 @@ namespace SpaceParkApi.DBContextModels
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=SpaceParkDb_edgar;User Id=sa;Password=Password123;");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=SpaceParkDb;User Id=sa;Password=My!P@ssw0rd1;");
         }
     }
 }
 
-docker run -d -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password123" -p 1433:1433--name SpaceParkDb mcr.microsoft.com/mssql/server:2019 - latest
