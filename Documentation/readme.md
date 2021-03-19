@@ -3,9 +3,9 @@
 |   |  1 |  2 | 3  |  4 |
 |---|---|---|---|---|
 | driver  | edgar  | elsa  | cecilia  |  anton |
-| cd  |  anton |  edgar |  elsa |  cecilia |
+| cd  |  elsa |  edgar |  anton |  cecilia |
 | timer  | cecilia  | anton  | edgar  | elsa  |
-| spy  | elsa  | cecilia  | anton  |  edgar |
+| spy  | anton  | cecilia  | elsa  |  edgar |
 
 ## Dagbok
 ### 2021-03-18
@@ -48,3 +48,7 @@ Hur ser flödet ut?
 	* ange spaceship
 	* ange ny sluttid
 	* meddela parkering startad, position och förväntad kostnad
+
+### 2021-03-19
+
+Vi diskuterade angåenda databas lösningen och kom fram till att vi ska använda docker och MSSQLserver lokalt på varsin dator
