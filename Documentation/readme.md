@@ -52,15 +52,15 @@ Hur ser flödet ut?
 ### 2021-03-19
 
 Vi diskuterade angående databas lösningen och kom fram till att vi ska använda docker och MSSQLserver lokalt på varsin dator.
-#### Docker kommandot (windows powershell) att känna till:
+#### Docker kommandot (windows power-shell) att känna till:
 
 * Hämtar MSSQL container
 ```
-docker pull mcr.microsoft.com/mssql/server:2019-latest
+docker pull mcr.microsoft.com/mssql/server
 ```
 * Kör MSSQL lokalt
 ```
-docker run -d -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=My!P@ssw0rd1" -p 1433:1433 --name SpaceParkDb mcr.microsoft.com/mssql/server - latest
+docker run -d -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=My!P@ssw0rd1" -p 1433:1433 --name SpaceParkDb mcr.microsoft.com/mssql/server
 ```
 #### VS Package Manager Console komandot att känna till:
 * Skapar ett ny "migration" fil
@@ -74,7 +74,7 @@ update-database
 
 #### Källkoden
 * Vi skapade projekt SpaceParkApi som ska innehålla application data hantering
-* Vi la på följadne NuGet paket:
+* Vi la på följande NuGet paket:
   * Microsoft.EntityFrameworkCore.SqlServe
   * Microsoft.EntityFrameworkCore.Design
   * Microsoft.EntityFrameworkCore.Tools
