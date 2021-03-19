@@ -4,10 +4,8 @@ using System.Text;
 
 namespace SpaceParkApi.Models
 {
-    class Spaceship
+    class Planet
     {
         public string Name { get; set; }
-        public int Length { get; set; }
-
     }
 }

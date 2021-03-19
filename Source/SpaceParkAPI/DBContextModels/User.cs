@@ -8,6 +8,6 @@ namespace SpaceParkApi.DBContextModels
     {
         public int UserId { get; set; }
         public string Name { get; set; }
-        public string HomePlanet { get; set; }
+        public string HomeWorld { get; set; }
     }
 }
