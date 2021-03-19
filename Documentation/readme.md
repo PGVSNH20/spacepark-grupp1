@@ -51,4 +51,8 @@ Hur ser flödet ut?
 
 ### 2021-03-19
 
-Vi diskuterade angåenda databas lösningen och kom fram till att vi ska använda docker och MSSQLserver lokalt på varsin dator
+Vi diskuterade angåenda databas lösningen och kom fram till att vi ska använda docker och MSSQLserver lokalt på varsin dator.
+Alla kör samma docker komandot
+´´´
+docker run -d -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password123" -p 1433:1433 --name SpaceParkDb mcr.microsoft.com/mssql/server:2019 - latest
+´´´
