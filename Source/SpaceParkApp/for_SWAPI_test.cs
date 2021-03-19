@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using RestSharp.Serializers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace TestingApp
+namespace SpaceParkApp
 {
     internal class _User
     {
@@ -11,7 +13,8 @@ namespace TestingApp
 
     internal class _Users
     {
-        //[attribute mappning]
+        //[SerializeAs(Name = "results")]
+        [JsonProperty("results")]
         public List<_User> users { get; set; }
     }
 }
