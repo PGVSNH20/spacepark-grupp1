@@ -51,8 +51,32 @@ Hur ser flödet ut?
 
 ### 2021-03-19
 
-Vi diskuterade angåenda databas lösningen och kom fram till att vi ska använda docker och MSSQLserver lokalt på varsin dator.
-Alla kör samma docker komandot
-´´´
-docker run -d -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password123" -p 1433:1433 --name SpaceParkDb mcr.microsoft.com/mssql/server:2019 - latest
-´´´
+Vi diskuterade angående databas lösningen och kom fram till att vi ska använda docker och MSSQLserver lokalt på varsin dator.
+#### Docker kommandot (windows powershell) att känna till:
+
+* Hämtar MSSQL container
+```
+docker pull mcr.microsoft.com/mssql/server:2019-latest
+```
+* Kör MSSQL lokalt
+```
+docker run -d -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=My!P@ssw0rd1" -p 1433:1433 --name SpaceParkDb mcr.microsoft.com/mssql/server - latest
+```
+#### VS Package Manager Console komandot att känna till:
+* Skapar ett ny "migration" fil
+```
+add-migration DbUpdate
+```
+* Updater databasmodell enligt senaste migration filen
+```
+update-database
+```
+
+#### Källkoden
+* Vi skapade projekt SpaceParkApi som ska innehålla application data hantering
+* Vi la på följadne NuGet paket:
+  * Microsoft.EntityFrameworkCore.SqlServe
+  * Microsoft.EntityFrameworkCore.Design
+  * Microsoft.EntityFrameworkCore.Tools
+* Vi skapade DdContextModel klasser samt konfigurerade DbContext klassen som ansvar för databas modellens uppbyggnad.
+* Vi skapada initiala migrerigs filen och uppdaterad databasen, det funkade för resten av oss att uppdatera lokalal databaser enligt denna fil
