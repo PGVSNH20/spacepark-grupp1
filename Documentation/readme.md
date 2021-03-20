@@ -52,7 +52,7 @@ Hur ser flödet ut?
 ### 2021-03-19
 
 Vi diskuterade angående databas lösningen och kom fram till att vi ska använda docker och MSSQLserver lokalt på varsin dator.
-#### Docker kommandot (windows power-shell) att känna till:
+#### Docker kommando (windows power-shell) att känna till:
 
 * Hämtar MSSQL container
 ```
@@ -62,7 +62,7 @@ docker pull mcr.microsoft.com/mssql/server
 ```
 docker run -d -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=My!P@ssw0rd1" -p 1433:1433 --name SpaceParkDb mcr.microsoft.com/mssql/server
 ```
-#### VS Package Manager Console komandot att känna till:
+#### VS Package Manager Console kommando att känna till:
 * Skapar ett ny "migration" fil
 ```
 add-migration DbUpdate
@@ -79,4 +79,4 @@ update-database
   * Microsoft.EntityFrameworkCore.Design
   * Microsoft.EntityFrameworkCore.Tools
 * Vi skapade DdContextModel klasser samt konfigurerade DbContext klassen som ansvar för databas modellens uppbyggnad.
-* Vi skapada initiala migrerigs filen och uppdaterad databasen, det funkade för resten av oss att uppdatera lokalal databaser enligt denna fil
+* Vi skapade initiala migreringsfilen och uppdaterad databasen, det funkade för resten av oss att uppdatera lokalal databaser enligt denna fil
