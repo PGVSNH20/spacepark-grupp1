@@ -12,12 +12,13 @@ namespace SpaceParkApp
     {
         private static void Main(string[] args)
         {
-            var foo = new SWApi();
-            foo.GetAllPeople();
-            var people = foo.PeopleList;
-            foo.GetAllStarships();
-            var starships = foo.StarshipsList;
-            Console.WriteLine("nice");
+            var swApi = new SWApi();
+            swApi.GetAllPeople();
+            var people = swApi.PeopleList;
+            swApi.GetAllStarships();
+            var starships = swApi.StarshipsList;
+            swApi.GetAllPlanets();
+            var planets = swApi.PlanetsList;
             Console.WriteLine("nice");
         }
     }

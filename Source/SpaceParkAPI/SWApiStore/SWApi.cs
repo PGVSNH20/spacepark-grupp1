@@ -20,11 +20,10 @@ namespace SpaceParkApi.SWApi
             _client = new RestClient("https://swapi.dev/api/");
         }
 
-
         public void GetAllStarships()
         {
             StarshipsList = new List<Spaceship>();
-            var request = new RestRequest("people/", DataFormat.Json);
+            var request = new RestRequest("starships/", DataFormat.Json);
             var respons = _client.Execute(request);
             var responsObj = JsonConvert.DeserializeObject<Starships>(respons.Content);
             StarshipsList.AddRange(responsObj.Results);
@@ -34,6 +33,7 @@ namespace SpaceParkApi.SWApi
                 StarshipsList.AddRange(responsObj.Results);
             }
         }
+
         public void GetAllPeople()
         {
             PeopleList = new List<User>();
@@ -45,6 +45,20 @@ namespace SpaceParkApi.SWApi
             {
                 responsObj = GetNextJsonRespons<People>(responsObj.Next);
                 PeopleList.AddRange(responsObj.Results);
+            }
+        }
+
+        public void GetAllPlanets()
+        {
+            PlanetsList = new List<Planet>();
+            var request = new RestRequest("planets/", DataFormat.Json);
+            var respons = _client.Execute(request);
+            var responsObj = JsonConvert.DeserializeObject<Planets>(respons.Content);
+            PlanetsList.AddRange(responsObj.Results);
+            while (responsObj.Next != null)
+            {
+                responsObj = GetNextJsonRespons<Planets>(responsObj.Next);
+                PlanetsList.AddRange(responsObj.Results);
             }
         }
 
