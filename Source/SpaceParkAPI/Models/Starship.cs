@@ -5,8 +5,9 @@ using System.Text;
 
 namespace SpaceParkApi.Models
 {
-    public class Spaceship
+    public class Starship
     {
+        public int Id { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
 

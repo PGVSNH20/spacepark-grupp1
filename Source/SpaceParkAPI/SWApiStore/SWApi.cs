@@ -6,12 +6,12 @@ using SpaceParkAPI.DbContextModels;
 using System;
 using System.Collections.Generic;
 
-namespace SpaceParkApi.SWApi
+namespace SpaceParkApi.SWApiStore
 {
     public class SWApi
     {
         public List<User> PeopleList { get; set; }
-        public List<Spaceship> StarshipsList { get; set; }
+        public List<Starship> StarshipsList { get; set; }
         public List<Planet> PlanetsList { get; set; }
         private RestClient _client { get; set; }
 
@@ -22,7 +22,7 @@ namespace SpaceParkApi.SWApi
 
         public void GetAllStarships()
         {
-            StarshipsList = new List<Spaceship>();
+            StarshipsList = new List<Starship>();
             var request = new RestRequest("starships/", DataFormat.Json);
             var respons = _client.Execute(request);
             var responsObj = JsonConvert.DeserializeObject<Starships>(respons.Content);
@@ -32,6 +32,16 @@ namespace SpaceParkApi.SWApi
                 responsObj = GetNextJsonRespons<Starships>(responsObj.Next);
                 StarshipsList.AddRange(responsObj.Results);
             }
+        }
+
+        public Starship GetStarshipById(int starshipId)
+        {
+            var request = new RestRequest($"starships/{starshipId}/", DataFormat.Json);
+            var respons = _client.Execute(request);
+            var responsObj = JsonConvert.DeserializeObject<Starship>(respons.Content);
+            var starship = responsObj;
+            starship.Id = starshipId;
+            return starship;
         }
 
         public void GetAllPeople()

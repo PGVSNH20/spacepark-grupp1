@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpaceParkAPI.DbContextModels;
 
 namespace SpaceParkAPI.Migrations
 {
     [DbContext(typeof(SpaceParkDbContext))]
-    partial class SpaceParkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210321193838_uppdate2")]
+    partial class uppdate2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,10 +36,10 @@ namespace SpaceParkAPI.Migrations
                     b.Property<decimal>("ParkingFee")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("ParkingSpotId")
+                    b.Property<int?>("ParkingSpotsParkingSpotId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StarshipId")
+                    b.Property<int>("SpaceShiptId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartTime")
@@ -48,7 +50,7 @@ namespace SpaceParkAPI.Migrations
 
                     b.HasKey("ParkingRegistrationId");
 
-                    b.HasIndex("ParkingSpotId");
+                    b.HasIndex("ParkingSpotsParkingSpotId");
 
                     b.HasIndex("UserId");
 
@@ -83,6 +85,9 @@ namespace SpaceParkAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("HomePlanet")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -93,15 +98,15 @@ namespace SpaceParkAPI.Migrations
 
             modelBuilder.Entity("SpaceParkAPI.DbContextModels.ParkingRegistration", b =>
                 {
-                    b.HasOne("SpaceParkAPI.DbContextModels.ParkingSpot", "ParkingSpot")
+                    b.HasOne("SpaceParkAPI.DbContextModels.ParkingSpot", "ParkingSpots")
                         .WithMany()
-                        .HasForeignKey("ParkingSpotId");
+                        .HasForeignKey("ParkingSpotsParkingSpotId");
 
                     b.HasOne("SpaceParkAPI.DbContextModels.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
-                    b.Navigation("ParkingSpot");
+                    b.Navigation("ParkingSpots");
 
                     b.Navigation("User");
                 });

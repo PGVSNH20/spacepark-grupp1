@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace SpaceParkApi.SWApiStore
 {
-    public class Starships : ISWApiData<Spaceship>
+    public class Starships : ISWApiData<Starship>
     {
         [JsonProperty("next")]
         public string Next { get; set; }
 
         [JsonProperty("results")]
-        public List<Spaceship> Results { get; set; }
+        public List<Starship> Results { get; set; }
     }
 }

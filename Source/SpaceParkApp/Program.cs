@@ -1,10 +1,10 @@
 ﻿//using Newtonsoft.Json;
 using System.Text.Json;
 using RestSharp;
-using SpaceParkApi.SWApi;
 using SpaceParkApi.SWApiStore;
 using System;
 using Newtonsoft.Json;
+using SpaceParkApi;
 
 namespace SpaceParkApp
 {
@@ -12,13 +12,19 @@ namespace SpaceParkApp
     {
         private static void Main(string[] args)
         {
-            var swApi = new SWApi();
-            swApi.GetAllPeople();
-            var people = swApi.PeopleList;
-            swApi.GetAllStarships();
-            var starships = swApi.StarshipsList;
-            swApi.GetAllPlanets();
-            var planets = swApi.PlanetsList;
+            //var swApi = new SWApi();
+            //swApi.GetAllPeople();
+            //var people = swApi.PeopleList;
+            //swApi.GetAllStarships();
+            //var starships = swApi.StarshipsList;
+            //swApi.GetAllPlanets();
+            //var planets = swApi.PlanetsList;
+
+            var registrator = new Registrator();
+            var isAuthorised = registrator.UserChecker("Luke Skywalker");
+            var acutallUser = registrator.User;
+            var userStarships = registrator.GetUserStarships();
+            registrator.SetCurrentStarship(12).AddNewRegistration("7:23");
             Console.WriteLine("nice");
         }
     }

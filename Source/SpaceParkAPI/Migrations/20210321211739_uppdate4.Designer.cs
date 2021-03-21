@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpaceParkAPI.DbContextModels;
 
 namespace SpaceParkAPI.Migrations
 {
     [DbContext(typeof(SpaceParkDbContext))]
-    partial class SpaceParkDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210321211739_uppdate4")]
+    partial class uppdate4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,7 @@ namespace SpaceParkAPI.Migrations
                     b.Property<int?>("ParkingSpotId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StarshipId")
+                    b.Property<int>("SpaceShiptId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartTime")

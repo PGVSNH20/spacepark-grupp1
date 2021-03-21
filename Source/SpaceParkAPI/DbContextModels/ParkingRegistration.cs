@@ -5,10 +5,10 @@ namespace SpaceParkAPI.DbContextModels
 {
     public class ParkingRegistration
     {
-        public int ParkingRegistrationId { get; set; }
+        public Guid ParkingRegistrationId { get; set; }
         public User User { get; set; }
-        public ParkingSpot ParkingSpots { get; set; }
-        public int SpaceShiptId { get; set; }
+        public ParkingSpot ParkingSpot { get; set; }
+        public int StarshipId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public bool IsOccupied { get; set; }
