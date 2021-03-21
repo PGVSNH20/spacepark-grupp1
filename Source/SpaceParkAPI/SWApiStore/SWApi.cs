@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using SpaceParkApi.Models;
 using SpaceParkApi.SWApiStore;
 using SpaceParkAPI.DbContextModels;
@@ -19,31 +20,45 @@ namespace SpaceParkApi.SWApi
             _client = new RestClient("https://swapi.dev/api/");
         }
 
-        public void GetAllStarships(Type test)
+
+        public void GetAllStarships()
         {
-            var request = new RestRequest("starships/", DataFormat.Json);
-            var response = _client.Get<ISWApiRespons<Spaceship>>(request);
-            StarshipsList = response.Data.Results;
-            if (response.Data.Next != null)
-                StarshipsList.AddRange(GetNextJsonRespons<Spaceship>(response.Data.Next));
+            StarshipsList = new List<Spaceship>();
+            var request = new RestRequest("people/", DataFormat.Json);
+            var respons = _client.Execute(request);
+            var responsObj = JsonConvert.DeserializeObject<Starships>(respons.Content);
+            StarshipsList.AddRange(responsObj.Results);
+            while (responsObj.Next != null)
+            {
+                responsObj = GetNextJsonRespons<Starships>(responsObj.Next);
+                StarshipsList.AddRange(responsObj.Results);
+            }
+        }
+        public void GetAllPeople()
+        {
+            PeopleList = new List<User>();
+            var request = new RestRequest("people/", DataFormat.Json);
+            var respons = _client.Execute(request);
+            var responsObj = JsonConvert.DeserializeObject<People>(respons.Content);
+            PeopleList.AddRange(responsObj.Results);
+            while (responsObj.Next != null)
+            {
+                responsObj = GetNextJsonRespons<People>(responsObj.Next);
+                PeopleList.AddRange(responsObj.Results);
+            }
         }
 
         public void GetStarshipByName()
         {
         }
 
-        private List<T> GetNextJsonRespons<T>(string url)
+        private T GetNextJsonRespons<T>(string url)
         {
-            List<T> returnList = new List<T>();
-            var requestString = url.Remove(0, _client.BaseUrl.ToString().Length);
+            var requestString = url.Remove(0, _client.BaseUrl.ToString().Length - 1);
             var request = new RestRequest(requestString, DataFormat.Json);
-            var response = _client.Get<ISWApiRespons<T>>(request);
-            returnList.AddRange(response.Data.Results);
-
-            if (response.Data.Next != null)
-                returnList.AddRange(GetNextJsonRespons<T>(response.Data.Next));
-
-            return response.Data.Results;
+            var respons = _client.Execute(request);
+            var responsObj = JsonConvert.DeserializeObject<T>(respons.Content);
+            return responsObj;
         }
     }
 }

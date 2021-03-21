@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpaceParkApi.SWApiStore
 {
-    public interface ISWApiRespons<T>
+    public interface ISWApiData<T>
     {
         [JsonProperty("results")]
         public List<T> Results { get; set; }

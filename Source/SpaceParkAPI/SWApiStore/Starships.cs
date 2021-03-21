@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SpaceParkApi.SWApiStore
 {
-    public class Starships : ISWApiRespons<Spaceship>
+    public class Starships : ISWApiData<Spaceship>
     {
         [JsonProperty("next")]
         public string Next { get; set; }

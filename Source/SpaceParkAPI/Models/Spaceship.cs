@@ -8,9 +8,9 @@ namespace SpaceParkApi.Models
     public class Spaceship
     {
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string ShipName { get; set; }
 
-        [JsonProperty("length")]
-        public int Length { get; set; }
+        [JsonProperty("lenght")]
+        public string Lenght { get; set; }
     }
 }
