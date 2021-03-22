@@ -6,9 +6,9 @@ using System.Text;
 
 namespace SpaceParkApi.Models
 {
-    class Users
+    public class Users
     {
         [JsonProperty("results")]
-        public List<User> UserList { get; set; }
+        public List<User> results { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpaceParkApi.SWApiStore
 {
-    class People
+    public class People
     {
         public List<User> results { get; set; }
     }
