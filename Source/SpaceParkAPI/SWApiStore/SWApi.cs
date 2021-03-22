@@ -19,15 +19,13 @@ namespace SpaceParkApi.SWApiStore
             var peopleResponse = Client.Get<People>(request);
 
             users.AddRange(peopleResponse.Data.results);
-            string requestString;
-            requestString = peopleResponse.Data.next.Replace("https://swapi.dev/api/", "");
 
             while (peopleResponse.Data.next != null)
             {
-                requestString = peopleResponse.Data.next.Replace("https://swapi.dev/api/", "");
-                var request = new RestRequest("/people/?page=2", DataFormat.Json);
+                var requestString = peopleResponse.Data.next.Replace("https://swapi.dev/api/", "");
+                request = new RestRequest(requestString, DataFormat.Json);
 
-                var peopleResponse = Client.Get<People>(request);
+                peopleResponse = Client.Get<People>(request);
             }
 
             return users;
