@@ -6,16 +6,39 @@ using System.Text;
 
 namespace SpaceParkApi.SWApiStore
 {
-    internal class SWApi
+    public class SWApi
     {
-        public void GetTest()
+        public RestClient Client { get; set; } = new RestClient("https://swapi.dev/api/");
+
+        public List<User> GetAllUsers()
         {
-            var client = new RestClient("https://swapi.dev/api/");
+            var users = new List<User>();
 
             var request = new RestRequest("people/", DataFormat.Json);
 
+            var peopleResponse = Client.Get<People>(request);
+
+            users.AddRange(peopleResponse.Data.results);
+            string requestString;
+            requestString = peopleResponse.Data.next.Replace("https://swapi.dev/api/", "");
+
+            while (peopleResponse.Data.next != null)
+            {
+                requestString = peopleResponse.Data.next.Replace("https://swapi.dev/api/", "");
+                var request = new RestRequest("/people/?page=2", DataFormat.Json);
+
+                var peopleResponse = Client.Get<People>(request);
+            }
+
+            return users;
+        }
+
+        public void GetTest()
+        {
+            var request = new RestRequest("people/", DataFormat.Json);
+
             // NOTE: The Swreponse is a custom class which represents the data returned by the API, RestClient have buildin ORM which maps the data from the reponse into a given type of object
-            var peopleResponse = client.Get<People>(request);
+            var peopleResponse = Client.Get<People>(request);
 
             //Console.WriteLine(peopleResponse.Data.Count);
             //foreach (var p in peopleResponse.Data.Results)

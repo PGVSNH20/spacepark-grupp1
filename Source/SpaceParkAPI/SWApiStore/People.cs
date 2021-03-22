@@ -8,5 +8,6 @@ namespace SpaceParkApi.SWApiStore
     public class People
     {
         public List<User> results { get; set; }
+        public string next { get; set; }
     }
 }
