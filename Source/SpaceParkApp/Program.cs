@@ -21,6 +21,7 @@ namespace SpaceParkApp
             //var planets = swApi.PlanetsList;
 
             var registrator = new Registrator();
+            //registrator.TruncateAll();
             var isAuthorised = registrator.UserChecker("Luke Skywalker");
             var acutallUser = registrator.User;
             var userStarships = registrator.GetUserStarships();

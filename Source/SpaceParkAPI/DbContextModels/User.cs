@@ -7,7 +7,23 @@ namespace SpaceParkAPI.DbContextModels
 {
     public class User
     {
+        [JsonProperty("url")]
+        public string SWPeopleUrl { get; set; }
+
         public int UserId { get; set; }
+
+        public int SWPeopleId
+        {
+            set
+            {
+                SWPeopleUrl = $"https://swapi.dev/api/people/{value}/";
+            }
+            get
+            {
+                var url = SWPeopleUrl.Split('/', System.StringSplitOptions.RemoveEmptyEntries);
+                return Convert.ToInt32(url[^1]);
+            }
+        }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -17,10 +33,14 @@ namespace SpaceParkAPI.DbContextModels
 
         public int HomePlanetId
         {
+            set
+            {
+                HomePlanetUrl = $"https://swapi.dev/api/planets/{value}/";
+            }
             get
             {
                 var url = HomePlanetUrl.Split('/', System.StringSplitOptions.RemoveEmptyEntries);
-                return Convert.ToInt32(url[url.Length - 1]);
+                return Convert.ToInt32(url[^1]);
             }
         }
 
@@ -29,6 +49,11 @@ namespace SpaceParkAPI.DbContextModels
 
         public List<int> StarshipsId
         {
+            set
+            {
+                foreach (var item in value)
+                    StarshispUrl.Add($"https://swapi.dev/api/starships/{value}/");
+            }
             get
             {
                 var returnValue = new List<int>();
@@ -36,7 +61,7 @@ namespace SpaceParkAPI.DbContextModels
                 {
                     Console.WriteLine(item);
                     var urlArray = item.Split('/', System.StringSplitOptions.RemoveEmptyEntries);
-                    returnValue.Add(Convert.ToInt32(urlArray[urlArray.Length - 1]));
+                    returnValue.Add(Convert.ToInt32(urlArray[^1]));
                 }
                 return returnValue;
             }

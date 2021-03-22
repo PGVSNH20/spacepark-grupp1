@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using SpaceParkApi.Models;
 using SpaceParkApi.SWApiStore;
 using SpaceParkAPI.DbContextModels;
@@ -19,6 +21,15 @@ namespace SpaceParkApi
             var swApi = new SWApi();
             swApi.GetAllPeople();
             var people = swApi.PeopleList;
+            //var dpUserReg = new List<User>();
+            //using (var db = new SpaceParkDbContext())
+            //{
+            //    dpUserReg = db.Users.Where(u => u.Name == userName).ToList();
+            //}
+            //if (dpUserReg.Count > 0)
+            //    User = dpUserReg[0];
+            //else
+            //    User = people.Find(u => u.Name == userName);
             User = people.Find(u => u.Name == userName);
             if (User == null)
                 return false;
@@ -60,6 +71,23 @@ namespace SpaceParkApi
             using (var db = new SpaceParkDbContext())
             {
                 db.Add(newRegistration);
+                db.SaveChanges();
+            }
+        }
+
+        public void TruncateAll()
+        {
+            using (var db = new SpaceParkDbContext())
+            {
+                db.Database.ExecuteSqlRaw("DELETE FROM ParkingRegistrations");
+
+                db.SaveChanges();
+            }
+            using (var db = new SpaceParkDbContext())
+            {
+                db.Database.ExecuteSqlRaw("DELETE FROM Users");
+                db.Database.ExecuteSqlRaw("DELETE FROM ParkingSpots");
+
                 db.SaveChanges();
             }
         }

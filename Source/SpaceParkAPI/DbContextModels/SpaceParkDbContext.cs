@@ -18,6 +18,9 @@ namespace SpaceParkAPI.DbContextModels
             modelBuilder.Entity<User>().Ignore(t => t.StarshispUrl);
             modelBuilder.Entity<User>().Ignore(t => t.StarshipsId);
             modelBuilder.Entity<User>().Ignore(t => t.HomePlanetUrl);
+            modelBuilder.Entity<User>().Ignore(t => t.HomePlanetId);
+            modelBuilder.Entity<User>().Ignore(t => t.SWPeopleUrl);
+            modelBuilder.Entity<User>().Ignore(t => t.SWPeopleId);
             base.OnModelCreating(modelBuilder);
         }
 
