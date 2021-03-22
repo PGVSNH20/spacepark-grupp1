@@ -80,3 +80,10 @@ update-database
   * Microsoft.EntityFrameworkCore.Tools
 * Vi skapade DdContextModel klasser samt konfigurerade DbContext klassen som ansvar för databas modellens uppbyggnad.
 * Vi skapade initiala migreringsfilen och uppdaterad databasen, det funkade för resten av oss att uppdatera lokalal databaser enligt denna fil
+
+### 2021-03-22
+#### Källkoden
+* Vi skapade namespace klass SWApi som ska hantera anrop till awapi.dev/api. Vi skapade följande metoder för klassen SWApi:
+  * GetAllUsers()
+  * GetAllStarShips()
+  * GetUserById(int user)
