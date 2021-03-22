@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using SpaceParkApi.DBContextModels;
+using SpaceParkApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,26 +33,26 @@ namespace SpaceParkApi.SWApiStore
             return users;
         }
 
-        public List<User> GetAllStarShips()
+        public List<Spaceship> GetAllStarShips()
         {
-            var users = new List<User>();
+            var starships = new List<Spaceship>();
 
-            var request = new RestRequest("people/", DataFormat.Json);
+            var request = new RestRequest("starships/", DataFormat.Json);
 
-            var peopleResponse = Client.Get<People>(request);
+            var starshipsResponse = Client.Get<StarShips>(request);
 
-            users.AddRange(peopleResponse.Data.results);
+            starships.AddRange(starshipsResponse.Data.results);
 
-            while (peopleResponse.Data.next != null)
+            while (starshipsResponse.Data.next != null)
             {
-                var requestString = peopleResponse.Data.next.Replace("https://swapi.dev/api/", "");
+                var requestString = starshipsResponse.Data.next.Replace("https://swapi.dev/api/", "");
                 request = new RestRequest(requestString, DataFormat.Json);
 
-                peopleResponse = Client.Get<People>(request);
-                users.AddRange(peopleResponse.Data.results);
+                starshipsResponse = Client.Get<StarShips>(request);
+                starships.AddRange(starshipsResponse.Data.results);
             }
 
-            return users;
+            return starships;
         }
 
         public void GetTest()

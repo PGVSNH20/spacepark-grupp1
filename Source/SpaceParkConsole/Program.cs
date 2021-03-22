@@ -9,7 +9,7 @@ namespace SpaceParkConsole
         private static void Main(string[] args)
         {
             var swapi = new SWApi();
-            var usersList = swapi.GetAllUsers();
+            var usersList = swapi.GetAllStarShips();
             Console.WriteLine("slut");
         }
     }
