@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpaceParkApi\SpaceParkApi.csproj">
+      <Project>{37179c26-7149-475a-ab08-e346ecf8af60}</Project>
+      <Name>SpaceParkApi</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
