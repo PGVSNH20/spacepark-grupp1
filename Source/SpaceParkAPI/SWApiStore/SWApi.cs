@@ -26,6 +26,29 @@ namespace SpaceParkApi.SWApiStore
                 request = new RestRequest(requestString, DataFormat.Json);
 
                 peopleResponse = Client.Get<People>(request);
+                users.AddRange(peopleResponse.Data.results);
+            }
+
+            return users;
+        }
+
+        public List<User> GetAllStarShips()
+        {
+            var users = new List<User>();
+
+            var request = new RestRequest("people/", DataFormat.Json);
+
+            var peopleResponse = Client.Get<People>(request);
+
+            users.AddRange(peopleResponse.Data.results);
+
+            while (peopleResponse.Data.next != null)
+            {
+                var requestString = peopleResponse.Data.next.Replace("https://swapi.dev/api/", "");
+                request = new RestRequest(requestString, DataFormat.Json);
+
+                peopleResponse = Client.Get<People>(request);
+                users.AddRange(peopleResponse.Data.results);
             }
 
             return users;

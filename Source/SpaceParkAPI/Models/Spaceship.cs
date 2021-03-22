@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SpaceParkApi.Models
 {
-    class Spaceship
+    public class Spaceship
     {
         public string Name { get; set; }
         public int Length { get; set; }
