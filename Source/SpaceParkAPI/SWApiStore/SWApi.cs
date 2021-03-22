@@ -4,6 +4,7 @@ using SpaceParkApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SpaceParkApi.SWApiStore
 {
@@ -53,6 +54,14 @@ namespace SpaceParkApi.SWApiStore
             }
 
             return starships;
+        }
+
+        public async Task<User> GetUserById(int user)
+        {
+            var request = new RestRequest($"people/{user}/", DataFormat.Json);
+
+            var resUser = await Client.GetAsync<User>(request);
+            return resUser;
         }
 
         public void GetTest()
