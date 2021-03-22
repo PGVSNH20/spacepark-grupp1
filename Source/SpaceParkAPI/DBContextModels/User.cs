@@ -7,7 +7,7 @@ namespace SpaceParkApi.DBContextModels
     public class User
     {
         public int UserId { get; set; }
-        public string Name { get; set; }
-        public string HomeWorld { get; set; }
+        public string name { get; set; }
+        public string homeworld { get; set; }
     }
 }

@@ -1,15 +1,10 @@
-﻿using RestSharp;
-using SpaceParkApi.DBContextModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SpaceParkApi.SWApiStore
+﻿namespace SpaceParkApp
 {
-    internal class SWApi
+    class Program
     {
-        public void GetTest()
+        static void Main(string[] args)
         {
+
             var client = new RestClient("https://swapi.dev/api/");
 
             var request = new RestRequest("people/", DataFormat.Json);
@@ -22,6 +17,7 @@ namespace SpaceParkApi.SWApiStore
             //{
             //    Console.WriteLine(p.Name);
             //}
+
         }
     }
 }
