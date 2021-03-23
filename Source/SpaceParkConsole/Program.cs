@@ -13,6 +13,17 @@ namespace SpaceParkConsole
             Console.WriteLine("Welcome to SpacePark, please enter your name:");
             string name = Console.ReadLine();
 
+            var swapi = new SWApi();
+            var users = await swapi.GetAllUsers();
+
+            foreach (var user in users)
+            {
+                if (name == user.name)
+                {
+
+                }
+            }
+            
             //Ange om det finns en pågående parkering
 
             //Ge val: starta ny/avsluta pågående/ändra pågående
@@ -26,9 +37,9 @@ namespace SpaceParkConsole
             //Ändra: ange spaceship, ny sluttid
             //Meddela: parkering startad, position, förväntad kostnad
 
-            var swapi = new SWApi();
+            
             //var usersList = swapi.GetAllStarShips();
-            var user = await swapi.GetUserById(1);
+            //var user = await swapi.GetUserById(1);
             Console.WriteLine("slut");
         }
     }
