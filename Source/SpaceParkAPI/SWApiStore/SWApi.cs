@@ -72,6 +72,13 @@ namespace SpaceParkApi.SWApiStore
             return resUser;
         }
 
+        public async Task<User> GetUserByName(string userName)
+        {
+            var users = await GetAllUsers();
+
+            return users.Find(u => u.name == userName);
+        }
+
         public void GetTest()
         {
             var request = new RestRequest("people/", DataFormat.Json);
