@@ -12,48 +12,56 @@ namespace SpaceParkApi.SWApiStore
     {
         public RestClient Client { get; set; } = new RestClient("https://swapi.dev/api/");
 
-        public List<User> GetAllUsers()
+        public async Task<List<User>> GetAllUsers()
         {
             var users = new List<User>();
 
             var request = new RestRequest("people/", DataFormat.Json);
 
-            var peopleResponse = Client.Get<People>(request);
+            var peopleResponse = await Client.GetAsync<People>(request);
 
-            users.AddRange(peopleResponse.Data.results);
+            users.AddRange(peopleResponse.results);
 
-            while (peopleResponse.Data.next != null)
+            while (peopleResponse.next != null)
             {
-                var requestString = peopleResponse.Data.next.Replace("https://swapi.dev/api/", "");
+                var requestString = peopleResponse.next.Replace("https://swapi.dev/api/", "");
                 request = new RestRequest(requestString, DataFormat.Json);
 
-                peopleResponse = Client.Get<People>(request);
-                users.AddRange(peopleResponse.Data.results);
+                peopleResponse = await Client.GetAsync<People>(request);
+                users.AddRange(peopleResponse.results);
             }
 
             return users;
         }
 
-        public List<Spaceship> GetAllStarShips()
+        public async Task<List<Spaceship>> GetAllStarShips()
         {
             var starships = new List<Spaceship>();
 
             var request = new RestRequest("starships/", DataFormat.Json);
 
-            var starshipsResponse = Client.Get<StarShips>(request);
+            var starshipsResponse = await Client.GetAsync<StarShips>(request);
 
-            starships.AddRange(starshipsResponse.Data.results);
+            starships.AddRange(starshipsResponse.results);
 
-            while (starshipsResponse.Data.next != null)
+            while (starshipsResponse.next != null)
             {
-                var requestString = starshipsResponse.Data.next.Replace("https://swapi.dev/api/", "");
+                var requestString = starshipsResponse.next.Replace("https://swapi.dev/api/", "");
                 request = new RestRequest(requestString, DataFormat.Json);
 
-                starshipsResponse = Client.Get<StarShips>(request);
-                starships.AddRange(starshipsResponse.Data.results);
+                starshipsResponse = await Client.GetAsync<StarShips>(request);
+                starships.AddRange(starshipsResponse.results);
             }
 
             return starships;
+        }
+
+        public async Task<Planet> GetPlanetById(int planet)
+        {
+            var request = new RestRequest($"planets/{planet}/", DataFormat.Json);
+
+            var resPlanet = await Client.GetAsync<Planet>(request);
+            return resPlanet;
         }
 
         public async Task<User> GetUserById(int user)
