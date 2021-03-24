@@ -36,6 +36,7 @@ namespace SpaceParkApi
             parkingRegistration.ParkingFee = Convert.ToDecimal(TimeSpan.Parse(parkingTime).TotalHours * 50);
             parkingRegistration.IsPaid = false;
             parkingRegistration.ParkingSpot = new ParkingSpot();
+            parkingRegistration.SpaceShipName = spaceship;
 
             var db = new SpaceParkDbContext();
             db.Add(parkingRegistration);
