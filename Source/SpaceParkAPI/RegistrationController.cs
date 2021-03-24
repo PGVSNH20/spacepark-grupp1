@@ -57,7 +57,7 @@ namespace SpaceParkApi
         {
             var db = new SpaceParkDbContext();
             var userEntity = db.Users.Where(u => u.name == User.name).Single();
-            var parkingRegistrationEntity = userEntity
+            var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.User == userEntity).Single();
         }
     }
 }
