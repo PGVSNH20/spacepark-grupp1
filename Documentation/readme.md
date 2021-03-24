@@ -1,4 +1,4 @@
-# Documentation
+ï»¿# Documentation
 ### Mob programmnging schema
 |   |  1 |  2 | 3  |  4 |
 |---|---|---|---|---|
@@ -9,13 +9,13 @@
 
 ## Dagbok
 ### 2021-03-18
-Vi diskuterade arbetssätt och upplägg vi ska köra på.
-Vi ska försöka hålla oss till MOB programmeringsarbetssätt.
+Vi diskuterade arbetssÃ¤tt och upplÃ¤gg vi ska kÃ¶ra pÃ¥.
+Vi ska fÃ¶rsÃ¶ka hÃ¥lla oss till MOB programmeringsarbetssÃ¤tt.
 
-Applikation ska bli på engelska, det ska bli konsolapplikation, man använder tangentbord, menyer kommer som text i konsolen
+Applikation ska bli pÃ¥ engelska, det ska bli konsolapplikation, man anvÃ¤nder tangentbord, menyer kommer som text i konsolen
 
-* Vad behöver vi databasmässigt?
-  * användares namn
+* Vad behÃ¶ver vi databasmÃ¤ssigt?
+  * anvÃ¤ndares namn
   * bostadsplanet
   * parkerings starttid
   * parkerings sluttid
@@ -30,39 +30,39 @@ Applikation ska bli på engelska, det ska bli konsolapplikation, man använder tan
   * ParkingRegistration
   * Spaceship (bara klass)
 
-Hur ser flödet ut?
-* användare ange namn
+Hur ser flÃ¶det ut?
+* anvÃ¤ndare ange namn
 * finns aktiv parkering?
-* vill avsluta, starta ändra parkering
+* vill avsluta, starta Ã¤ndra parkering
 * starta (om det finns lediga platser, annars meddela fullt)
 	* ange spaceship
 	* visa lediga platser
 	* ange sluttid
-	* meddela parkering startad, position och förväntad kostnad
+	* meddela parkering startad, position och fÃ¶rvÃ¤ntad kostnad
 * avsluta
 	* ange spaceship
 	* meddela slutpris
 	* meddela fakturaadress
 	* meddela betaldatum
-* ändra
+* Ã¤ndra
 	* ange spaceship
 	* ange ny sluttid
-	* meddela parkering startad, position och förväntad kostnad
+	* meddela parkering startad, position och fÃ¶rvÃ¤ntad kostnad
 
 ### 2021-03-19
 
-Vi diskuterade angående databas lösningen och kom fram till att vi ska använda docker och MSSQLserver lokalt på varsin dator.
-#### Docker kommando (windows power-shell) att känna till:
+Vi diskuterade angÃ¥ende databas lÃ¶sningen och kom fram till att vi ska anvÃ¤nda docker och MSSQLserver lokalt pÃ¥ varsin dator.
+#### Docker kommando (windows power-shell) att kÃ¤nna till:
 
-* Hämtar MSSQL container
+* HÃ¤mtar MSSQL container
 ```
 docker pull mcr.microsoft.com/mssql/server
 ```
-* Kör MSSQL lokalt
+* KÃ¶r MSSQL lokalt
 ```
 docker run -d -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=My!P@ssw0rd1" -p 1433:1433 --name SpaceParkDb mcr.microsoft.com/mssql/server
 ```
-#### VS Package Manager Console kommando att känna till:
+#### VS Package Manager Console kommando att kÃ¤nna till:
 * Skapar ett ny "migration" fil
 ```
 add-migration DbUpdate
@@ -72,24 +72,28 @@ add-migration DbUpdate
 update-database
 ```
 
-#### Källkoden
-* Vi skapade projekt SpaceParkApi som ska innehålla application data hantering
-* Vi la på följande NuGet paket:
+#### KÃ¤llkoden
+* Vi skapade projekt SpaceParkApi som ska innehÃ¥lla application data hantering
+* Vi la pÃ¥ fÃ¶ljande NuGet paket:
   * Microsoft.EntityFrameworkCore.SqlServe
   * Microsoft.EntityFrameworkCore.Design
   * Microsoft.EntityFrameworkCore.Tools
-* Vi skapade DdContextModel klasser samt konfigurerade DbContext klassen som ansvar för databas modellens uppbyggnad.
-* Vi skapade initiala migreringsfilen och uppdaterad databasen, det funkade för resten av oss att uppdatera lokalal databaser enligt denna fil
+* Vi skapade DdContextModel klasser samt konfigurerade DbContext klassen som ansvar fÃ¶r databas modellens uppbyggnad.
+* Vi skapade initiala migreringsfilen och uppdaterad databasen, det funkade fÃ¶r resten av oss att uppdatera lokalal databaser enligt denna fil
 
 ### 2021-03-22
-#### Källkoden
-* Vi skapade namespace klass SWApi som ska hantera anrop till awapi.dev/api. Vi skapade följande metoder för klassen SWApi:
+#### KÃ¤llkoden
+* Vi skapade namespace klass SWApi som ska hantera anrop till awapi.dev/api. Vi skapade fÃ¶ljande metoder fÃ¶r klassen SWApi:
   * GetAllUsers()
   * GetAllStarShips()
   * GetUserById(int user)
 
-### 2021-03-24
+### 2021-03-24 del1
 * Implementerade AddParkingRegistration.
-* Testade lägga till en ParkingRegistration i databasen.
-* Upptäckte att samma användare får olika UserID:n i ParkingRegistration-tabellen.
-* Implementerat flöde som låter användaren välja SpaceShip.
+* Testade lÃ¤gga till en ParkingRegistration i databasen.
+* UpptÃ¤ckte att samma anvÃ¤ndare fÃ¥r olika UserID:n i ParkingRegistration-tabellen.
+* Implementerat flÃ¶de som lÃ¥ter anvÃ¤ndaren vÃ¤lja SpaceShip.
+
+### 2021-03-24 del1
+* LÃ¶ste situationen med anvÃ¤ndare entitets dubbletter i "Users" databasen. Nu skapas inte ny entitet i "Users" tabellen om anvÃ¤ndare redan finns registrerat.
+* PÃ¥bÃ¶rjade metod som ska uppdatera en pÃ¥gÃ¥ende parkering. Han inte testa. ğŸ˜´
