@@ -76,7 +76,7 @@ namespace SpaceParkApi.SWApiStore
         {
             var users = await GetAllUsers();
 
-            return users.Find(u => u.name == userName);
+            return users.Find(u => u.name.ToLower() == userName.ToLower());
         }
 
         public void GetTest()

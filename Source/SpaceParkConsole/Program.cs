@@ -14,7 +14,17 @@ namespace SpaceParkConsole
             Console.WriteLine("Welcome to SpacePark, please enter your name:");
             string userName = Console.ReadLine();
             var registrationController = new RegistrationController();
-            await registrationController.CheckUserIdentity(userName);
+            var userExists = await registrationController.CheckUserIdentity(userName);
+
+            if (userExists)
+            {
+                Console.WriteLine($"Welcome {userName}!");
+            }
+            else
+            {
+                Console.WriteLine("User not found! Try again!");
+            }
+
 
           
             //Ange om det finns en pågående parkering
