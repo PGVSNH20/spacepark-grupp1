@@ -9,12 +9,13 @@ namespace SpaceParkApi
 {
     public class RegistrationController
     {
+        public User User { get; set; } 
         public async Task<bool> CheckUserIdentity(string userName)
         {
             var swapi = new SWApi();
-            var user = await swapi.GetUserByName(userName);
+            User = await swapi.GetUserByName(userName);
 
-            if (user == null) return false;
+            if (User == null) return false;
 
             return true;
         }

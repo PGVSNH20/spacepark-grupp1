@@ -18,7 +18,8 @@ namespace SpaceParkConsole
 
             if (userExists)
             {
-                Console.WriteLine($"Welcome {userName}!");
+                var user = registrationController.User;
+                Console.WriteLine($"Welcome {user.name}!");
             }
             else
             {
