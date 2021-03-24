@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 
 namespace SpaceParkApi
 {
-    public class RegistrationConroller
+    public class RegistrationController
     {
-        public async Task<User> CheckUserIdentity(string userName)
+        public async Task<bool> CheckUserIdentity(string userName)
         {
             var swapi = new SWApi();
             var user = await swapi.GetUserByName(userName);
+
+            if (user == null) return false;
+
+            return true;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using SpaceParkApi;
 using SpaceParkApi.SWApiStore;
 using System;
 using System.Threading.Tasks;
@@ -11,19 +12,11 @@ namespace SpaceParkConsole
         private static async Task Main(string[] args)
         {
             Console.WriteLine("Welcome to SpacePark, please enter your name:");
-            string name = Console.ReadLine();
+            string userName = Console.ReadLine();
+            var registrationController = new RegistrationController();
+            await registrationController.CheckUserIdentity(userName);
 
-            var swapi = new SWApi();
-            var users = await swapi.GetAllUsers();
-
-            foreach (var user in users)
-            {
-                if (name == user.name)
-                {
-
-                }
-            }
-            
+          
             //Ange om det finns en pågående parkering
 
             //Ge val: starta ny/avsluta pågående/ändra pågående
