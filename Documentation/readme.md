@@ -94,6 +94,6 @@ update-database
 * Upptäckte att samma användare får olika UserID:n i ParkingRegistration-tabellen.
 * Implementerat flöde som låter användaren välja SpaceShip.
 
-### 2021-03-24 del1
+### 2021-03-24 del2
 * Löste situationen med användare entitets dubbletter i "Users" databasen. Nu skapas inte ny entitet i "Users" tabellen om användare redan finns registrerat.
 * Påbörjade metod som ska uppdatera en pågående parkering. Han inte testa. 😴
