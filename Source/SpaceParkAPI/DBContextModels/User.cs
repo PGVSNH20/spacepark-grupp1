@@ -10,6 +10,24 @@ namespace SpaceParkApi.DBContextModels
         public string name { get; set; }
         public string homeworld { get; set; }
         public List<string> starships { get; set; }
-        public List<int> starshipsId { get; set; }
+        public List<int> starshipsId {
+            get {
+                    return AddStarshipIds();
+                }
+            set { } 
+        }
+
+        public List<int> AddStarshipIds()
+        {
+            List<int> ids = new List<int>();
+            foreach (var starship in starships)
+            {
+                string[] values = starship.Split('/');
+                int.TryParse(values[5], out int result);
+                ids.Add(result);
+            }
+            return ids;
+
+        }
     }
 }

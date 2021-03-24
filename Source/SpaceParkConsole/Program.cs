@@ -19,6 +19,10 @@ namespace SpaceParkConsole
             if (userExists)
             {
                 var user = registrationController.User;
+                foreach(var id in user.starshipsId)
+                {
+                    Console.WriteLine(id);
+                }
                 Console.WriteLine($"Welcome {user.name}!");
             }
             else
