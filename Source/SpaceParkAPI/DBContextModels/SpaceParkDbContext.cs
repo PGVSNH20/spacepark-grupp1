@@ -19,6 +19,7 @@ namespace SpaceParkApi.DBContextModels
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().Ignore(p => p.starships);
+            modelBuilder.Entity<User>().Ignore(p => p.starshipsId);
         }
     }
 }

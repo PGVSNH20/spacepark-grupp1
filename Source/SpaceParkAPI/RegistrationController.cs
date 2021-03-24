@@ -21,9 +21,11 @@ namespace SpaceParkApi
             return true;
         }
 
-        public void AddParkingRegistration(string parkingEndTime)
+        public void AddParkingRegistration(string parkingTime)
         {
-            
+            ParkingRegistration parkingRegistration = new ParkingRegistration();
+            parkingRegistration.ParkingStartTime = DateTime.Now;
+            DateTime endTime = DateTime.Now + TimeSpan.Parse(parkingTime);
         }
     }
 }
