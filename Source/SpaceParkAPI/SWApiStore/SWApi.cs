@@ -79,10 +79,10 @@ namespace SpaceParkApi.SWApiStore
             return users.Find(u => u.name.ToLower() == userName.ToLower());
         }
 
-        public async Task<List<Spaceship>> GetUserSpaceships()
-        {
+        //public async Task<List<Spaceship>> GetUserSpaceships()
+        //{
 
-        }
+        //}
 
         public void GetTest()
         {
