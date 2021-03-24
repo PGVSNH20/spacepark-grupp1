@@ -33,7 +33,7 @@ namespace SpaceParkApi
             ParkingRegistration parkingRegistration = new ParkingRegistration();
             parkingRegistration.ParkingStartTime = DateTime.Now;
             parkingRegistration.ParkingEndTime = DateTime.Now + TimeSpan.Parse(parkingTime);
-            //parkingRegistration.User = User;
+            
             parkingRegistration.ParkingFee = Convert.ToDecimal(TimeSpan.Parse(parkingTime).TotalHours * 50);
             parkingRegistration.IsPaid = false;
             parkingRegistration.ParkingSpot = new ParkingSpot();
@@ -41,8 +41,16 @@ namespace SpaceParkApi
 
             var db = new SpaceParkDbContext();
 
-            var userEntity = db.Users.Where(u => u.name == User.name).Single();
-            parkingRegistration.User = userEntity;
+            try
+            {
+
+                var userEntity = db.Users.Where(u => u.name == User.name).Single();
+                parkingRegistration.User = userEntity;
+            }
+            catch
+            {
+                parkingRegistration.User = User;
+            }
 
             db.Add(parkingRegistration);
             db.SaveChanges();
@@ -58,6 +66,10 @@ namespace SpaceParkApi
             var db = new SpaceParkDbContext();
             var userEntity = db.Users.Where(u => u.name == User.name).Single();
             var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.User == userEntity).Single();
+            parkingRegistrationEntity.ParkingEndTime += TimeSpan.Parse(newTime);
+
+            db.Update(parkingRegistrationEntity);
+            db.SaveChanges();
         }
     }
 }
