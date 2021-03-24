@@ -61,6 +61,7 @@ namespace SpaceParkConsole
             //var usersList = swapi.GetAllStarShips();
             //var user = await swapi.GetUserById(1);
             Console.WriteLine("slut");
+            
         }
     }
 }

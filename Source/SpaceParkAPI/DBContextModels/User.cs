@@ -6,7 +6,15 @@ namespace SpaceParkApi.DBContextModels
 {
     public class User
     {
-        public int UserId { get; set; }
+        public int Id
+        { get
+            {
+                return int.Parse(url.Split('/')[5]);
+            }
+          set { } 
+        }
+
+        public string url { get; set; }
         public string name { get; set; }
         public string homeworld { get; set; }
         public List<string> starships { get; set; }

@@ -87,3 +87,9 @@ update-database
   * GetAllUsers()
   * GetAllStarShips()
   * GetUserById(int user)
+
+### 2021-03-24
+* Implementerade AddParkingRegistration.
+* Testade lägga till en ParkingRegistration i databasen.
+* Upptäckte att samma användare får olika UserID:n i ParkingRegistration-tabellen.
+* Implementerat flöde som låter användaren välja SpaceShip.

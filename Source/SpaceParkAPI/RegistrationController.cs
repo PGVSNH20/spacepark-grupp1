@@ -39,8 +39,8 @@ namespace SpaceParkApi
             parkingRegistration.SpaceShipName = spaceship;
 
             var db = new SpaceParkDbContext();
-            db.Add(parkingRegistration);
-            db.SaveChanges();
+            //db.Add(parkingRegistration);
+            //db.SaveChanges();
 
         }
 

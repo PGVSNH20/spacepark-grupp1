@@ -20,6 +20,7 @@ namespace SpaceParkApi.DBContextModels
         {
             modelBuilder.Entity<User>().Ignore(p => p.starships);
             modelBuilder.Entity<User>().Ignore(p => p.starshipsId);
+            modelBuilder.Entity<User>().Ignore(p => p.url);
         }
     }
 }
