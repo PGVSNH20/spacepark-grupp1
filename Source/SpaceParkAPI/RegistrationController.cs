@@ -52,5 +52,12 @@ namespace SpaceParkApi
         {
             return await swApi.GetStarshiptById(starshipId);
         }
+
+        public void UpdateParkingRegistration(string newTime)
+        {
+            var db = new SpaceParkDbContext();
+            var userEntity = db.Users.Where(u => u.name == User.name).Single();
+            var parkingRegistrationEntity = userEntity
+        }
     }
 }
