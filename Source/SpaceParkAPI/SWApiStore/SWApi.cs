@@ -64,6 +64,14 @@ namespace SpaceParkApi.SWApiStore
             return resPlanet;
         }
 
+        public async Task<Spaceship> GetStarshiptById(int starshipId)
+        {
+            var request = new RestRequest($"starships/{starshipId}/", DataFormat.Json);
+
+            var resStarship = await Client.GetAsync<Spaceship>(request);
+            return resStarship;
+        }
+
         public async Task<User> GetUserById(int user)
         {
             var request = new RestRequest($"people/{user}/", DataFormat.Json);
@@ -81,7 +89,6 @@ namespace SpaceParkApi.SWApiStore
 
         //public async Task<List<Spaceship>> GetUserSpaceships()
         //{
-
         //}
 
         public void GetTest()
