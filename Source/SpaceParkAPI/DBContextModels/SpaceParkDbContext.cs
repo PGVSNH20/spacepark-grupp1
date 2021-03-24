@@ -15,6 +15,11 @@ namespace SpaceParkApi.DBContextModels
         {
             optionsBuilder.UseSqlServer(@"Server=localhost;Database=SpaceParkDb;User Id=sa;Password=My!P@ssw0rd1;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().Ignore(p => p.starships);
+        }
     }
 }
 

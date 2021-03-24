@@ -9,5 +9,7 @@ namespace SpaceParkApi.DBContextModels
         public int UserId { get; set; }
         public string name { get; set; }
         public string homeworld { get; set; }
+        public List<string> starships { get; set; }
+        public List<int> starshipsId { get; set; }
     }
 }
