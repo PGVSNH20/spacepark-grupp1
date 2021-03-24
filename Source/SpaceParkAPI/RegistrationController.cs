@@ -27,11 +27,20 @@ namespace SpaceParkApi
             return true;
         }
 
-        public void AddParkingRegistration(string parkingTime)
+        public void AddParkingRegistration(string parkingTime, string spaceship)
         {
             ParkingRegistration parkingRegistration = new ParkingRegistration();
             parkingRegistration.ParkingStartTime = DateTime.Now;
-            DateTime endTime = DateTime.Now + TimeSpan.Parse(parkingTime);
+            parkingRegistration.ParkingEndTime = DateTime.Now + TimeSpan.Parse(parkingTime);
+            parkingRegistration.User = User;
+            parkingRegistration.ParkingFee = Convert.ToDecimal(TimeSpan.Parse(parkingTime).TotalHours * 50);
+            parkingRegistration.IsPaid = false;
+            parkingRegistration.ParkingSpot = new ParkingSpot();
+
+            var db = new SpaceParkDbContext();
+            db.Add(parkingRegistration);
+            db.SaveChanges();
+
         }
 
         public async Task<Spaceship> GetStarshiptById(int starshipId)

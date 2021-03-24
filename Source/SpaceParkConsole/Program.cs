@@ -37,6 +37,8 @@ namespace SpaceParkConsole
                 }
                 string chosenSpaceship = Console.ReadLine();
                 Console.WriteLine($"You chose {spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name}");
+
+                registrationController.AddParkingRegistration("10:00:00", spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name);
             }
             else
             {
