@@ -10,6 +10,7 @@ namespace SpaceParkApi
     public class RegistrationController
     {
         public User User { get; set; } 
+        
         public async Task<bool> CheckUserIdentity(string userName)
         {
             var swapi = new SWApi();
@@ -19,5 +20,11 @@ namespace SpaceParkApi
 
             return true;
         }
+
+        public void AddParkingRegistration(string parkingEndTime)
+        {
+            
+        }
     }
 }
+
