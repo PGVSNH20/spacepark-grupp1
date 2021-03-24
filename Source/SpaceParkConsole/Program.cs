@@ -28,11 +28,9 @@ namespace SpaceParkConsole
 
                 Console.WriteLine("Chose spaceship to park:");
 
-                var i = 0;
                 var spaceshipOpions = new List<Spaceship>();
                 foreach (var id in user.starshipsId)
                 {
-                    i++;
                     var spaceship = await registrationController.GetStarshiptById(id);
                     spaceshipOpions.Add(spaceship);
                     Console.WriteLine($"{spaceshipOpions.Count}: {spaceship.name}");
