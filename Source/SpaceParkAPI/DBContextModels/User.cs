@@ -6,23 +6,29 @@ namespace SpaceParkApi.DBContextModels
 {
     public class User
     {
+        public int UserId { get; set; }
+
         public int Id
-        { get
+        {
+            get
             {
                 return int.Parse(url.Split('/')[5]);
             }
-          set { } 
+            set { }
         }
 
         public string url { get; set; }
         public string name { get; set; }
         public string homeworld { get; set; }
         public List<string> starships { get; set; }
-        public List<int> starshipsId {
-            get {
-                    return AddStarshipIds();
-                }
-            set { } 
+
+        public List<int> starshipsId
+        {
+            get
+            {
+                return AddStarshipIds();
+            }
+            set { }
         }
 
         public List<int> AddStarshipIds()
@@ -35,7 +41,6 @@ namespace SpaceParkApi.DBContextModels
                 ids.Add(result);
             }
             return ids;
-
         }
     }
 }

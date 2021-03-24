@@ -3,6 +3,7 @@ using SpaceParkApi.Models;
 using SpaceParkApi.SWApiStore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,16 +33,19 @@ namespace SpaceParkApi
             ParkingRegistration parkingRegistration = new ParkingRegistration();
             parkingRegistration.ParkingStartTime = DateTime.Now;
             parkingRegistration.ParkingEndTime = DateTime.Now + TimeSpan.Parse(parkingTime);
-            parkingRegistration.User = User;
+            //parkingRegistration.User = User;
             parkingRegistration.ParkingFee = Convert.ToDecimal(TimeSpan.Parse(parkingTime).TotalHours * 50);
             parkingRegistration.IsPaid = false;
             parkingRegistration.ParkingSpot = new ParkingSpot();
             parkingRegistration.SpaceShipName = spaceship;
 
             var db = new SpaceParkDbContext();
-            //db.Add(parkingRegistration);
-            //db.SaveChanges();
 
+            var userEntity = db.Users.Where(u => u.name == User.name).Single();
+            parkingRegistration.User = userEntity;
+
+            db.Add(parkingRegistration);
+            db.SaveChanges();
         }
 
         public async Task<Spaceship> GetStarshiptById(int starshipId)
