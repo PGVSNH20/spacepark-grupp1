@@ -99,7 +99,7 @@ update-database
 * Påbörjade metod som ska uppdatera en pågående parkering. UpdateParkingRegistration(). Han inte testa. 😴
 
 ### 2021-03-25
-* Vi fick metod UpdateParkingRegistration() att funka och testa lite olika fall.
+* Vi fick metod UpdateParkingRegistration() att funka och testade lite olika fall.
 * Vi byggde några nya metoder:
   * UserHasActiveParking(); OK
   * EndParkingRegistration(); OK
