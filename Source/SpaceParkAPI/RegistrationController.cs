@@ -79,11 +79,13 @@ namespace SpaceParkApi
             try
             {
                 var userEntity = db.Users.Where(u => u.name.ToLower() == User.name.ToLower()).Single();
-                var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.User == userEntity).Single();
-                if (parkingRegistrationEntity.ParkingEndTime < DateTime.Now)
-                    return false;
-                else
-                    return db.ParkingRegistrations.Contains(parkingRegistrationEntity);
+                var parkingRegistrationEntitys = db.ParkingRegistrations.Where(p => p.User == userEntity).ToList();
+                foreach (var parkingRegistrationEntity in parkingRegistrationEntitys)
+                {
+                    if (parkingRegistrationEntity.ParkingEndTime > DateTime.Now)
+                        return true;
+                }
+                return false;
             }
             catch { return false; }
         }
