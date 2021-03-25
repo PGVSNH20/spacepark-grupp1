@@ -11,6 +11,7 @@ namespace SpaceParkApi
     {
         public User User { get; set; }
         private SWApi swApi { get; set; }
+        public int ActiveParkingId { get; set; }
 
         public RegistrationController()
         {
@@ -61,8 +62,7 @@ namespace SpaceParkApi
         public void UpdateParkingRegistration(string newTime)
         {
             var db = new SpaceParkDbContext();
-            var userEntity = db.Users.Where(u => u.name.ToLower() == User.name.ToLower()).Single();
-            var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.User == userEntity).Single();
+            var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.ParkingRegistrationID == ActiveParkingId).Single();
             var newEndTime = parkingRegistrationEntity.ParkingEndTime + TimeSpan.Parse(newTime);
             if (newEndTime < DateTime.Now)
                 parkingRegistrationEntity.ParkingEndTime = DateTime.Now;
@@ -83,7 +83,10 @@ namespace SpaceParkApi
                 foreach (var parkingRegistrationEntity in parkingRegistrationEntitys)
                 {
                     if (parkingRegistrationEntity.ParkingEndTime > DateTime.Now)
+                    {
+                        ActiveParkingId = parkingRegistrationEntity.ParkingRegistrationID;
                         return true;
+                    }
                 }
                 return false;
             }

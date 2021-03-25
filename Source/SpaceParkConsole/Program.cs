@@ -25,7 +25,7 @@ namespace SpaceParkConsole
                     var choice = int.Parse(Console.ReadLine());
                     if (choice == 1)
                     {
-                        Console.WriteLine("Enter timespan to extend (+hh:mm:ss) or shorten (-hh:mm:ss) parking");
+                        Console.WriteLine("Enter timespan to extend (hh:mm:ss) or shorten (-hh:mm:ss) parking");
                         registrationController.UpdateParkingRegistration(Console.ReadLine());
                     }
                     if (choice == 2)
@@ -33,24 +33,23 @@ namespace SpaceParkConsole
                         registrationController.EndParkingRegistration();
                     }
                 }
-
-                //var foo = Console.ReadLine();
-                //if (foo == "y")
-                //    registrationController.UpdateParkingRegistration("-9:59:00");
-
-                Console.WriteLine("Chose spaceship to park:");
-
-                var spaceshipOpions = new List<Spaceship>();
-                foreach (var id in user.starshipsId)
+                else
                 {
-                    var spaceship = await registrationController.GetStarshiptById(id);
-                    spaceshipOpions.Add(spaceship);
-                    Console.WriteLine($"{spaceshipOpions.Count}: {spaceship.name}");
-                }
-                string chosenSpaceship = Console.ReadLine();
-                Console.WriteLine($"You chose {spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name}");
+                    Console.WriteLine("Chose spaceship to park:");
 
-                registrationController.AddParkingRegistration("10:00:00", spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name);
+                    var spaceshipOpions = new List<Spaceship>();
+                    foreach (var id in user.starshipsId)
+                    {
+                        var spaceship = await registrationController.GetStarshiptById(id);
+                        spaceshipOpions.Add(spaceship);
+                        Console.WriteLine($"{spaceshipOpions.Count}: {spaceship.name}");
+                    }
+                    string chosenSpaceship = Console.ReadLine();
+                    Console.WriteLine($"You chose {spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name}");
+
+                    registrationController.AddParkingRegistration("10:00:00", spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name);
+                }
+
             }
             else
             {
