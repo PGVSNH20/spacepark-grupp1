@@ -96,4 +96,13 @@ update-database
 
 ### 2021-03-24 del2
 * Löste situationen med användare entitets dubbletter i "Users" databasen. Nu skapas inte ny entitet i "Users" tabellen om användare redan finns registrerat.
-* Påbörjade metod som ska uppdatera en pågående parkering. Han inte testa. 😴
+* Påbörjade metod som ska uppdatera en pågående parkering. UpdateParkingRegistration(). Han inte testa. 😴
+
+### 2021-03-25
+* Vi fick metod UpdateParkingRegistration() att funka och testa lite olika fall.
+* Vi byggde några nya metoder:
+  * UserHasActiveParking(); OK
+  * EndParkingRegistration(); OK
+* Vi uppdaterade flöde:
+  * nu får man val att uppdatera eller avluta aktiv parkering om sånt finns innan man kan skapa ny.
+  * man får meddelande med slut belopp after avslutat parkering
