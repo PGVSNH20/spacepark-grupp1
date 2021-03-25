@@ -26,6 +26,10 @@ namespace SpaceParkConsole
                 //    ...
                 //}
 
+                var foo = Console.ReadLine();
+                if (foo == "y")
+                    registrationController.UpdateParkingRegistration("-9:59:00");
+
                 Console.WriteLine("Chose spaceship to park:");
 
                 var spaceshipOpions = new List<Spaceship>();
@@ -39,12 +43,6 @@ namespace SpaceParkConsole
                 Console.WriteLine($"You chose {spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name}");
 
                 registrationController.AddParkingRegistration("10:00:00", spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name);
-
-
-
-
-
-
             }
             else
             {
@@ -67,7 +65,6 @@ namespace SpaceParkConsole
             //var usersList = swapi.GetAllStarShips();
             //var user = await swapi.GetUserById(1);
             Console.WriteLine("slut");
-            
         }
     }
 }

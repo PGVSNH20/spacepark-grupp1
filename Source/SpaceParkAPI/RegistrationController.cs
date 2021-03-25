@@ -66,7 +66,11 @@ namespace SpaceParkApi
             var db = new SpaceParkDbContext();
             var userEntity = db.Users.Where(u => u.name == User.name).Single();
             var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.User == userEntity).Single();
-            parkingRegistrationEntity.ParkingEndTime += TimeSpan.Parse(newTime);
+            var newEndTime = parkingRegistrationEntity.ParkingEndTime + TimeSpan.Parse(newTime);
+            if (newEndTime < DateTime.Now)
+                parkingRegistrationEntity.ParkingEndTime = DateTime.Now;
+            else
+                parkingRegistrationEntity.ParkingEndTime += TimeSpan.Parse(newTime);
 
             db.Update(parkingRegistrationEntity);
             db.SaveChanges();
