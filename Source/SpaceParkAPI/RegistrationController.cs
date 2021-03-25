@@ -11,7 +11,7 @@ namespace SpaceParkApi
     {
         public User User { get; set; }
         private SWApi swApi { get; set; }
-        public int ActiveParkingId { get; set; }
+        public ParkingRegistration ActiveParking { get; set; }
 
         public RegistrationController()
         {
@@ -62,7 +62,7 @@ namespace SpaceParkApi
         public void UpdateParkingRegistration(string newTime)
         {
             var db = new SpaceParkDbContext();
-            var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.ParkingRegistrationID == ActiveParkingId).Single();
+            var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p == ActiveParking).Single();
             var newEndTime = parkingRegistrationEntity.ParkingEndTime + TimeSpan.Parse(newTime);
             if (newEndTime < DateTime.Now)
                 parkingRegistrationEntity.ParkingEndTime = DateTime.Now;
@@ -84,7 +84,7 @@ namespace SpaceParkApi
                 {
                     if (parkingRegistrationEntity.ParkingEndTime > DateTime.Now)
                     {
-                        ActiveParkingId = parkingRegistrationEntity.ParkingRegistrationID;
+                        ActiveParking = parkingRegistrationEntity;
                         return true;
                     }
                 }
@@ -96,9 +96,11 @@ namespace SpaceParkApi
         public void EndParkingRegistration()
         {
             var db = new SpaceParkDbContext();
-            var userEntity = db.Users.Where(u => u.name == User.name).Single();
-            var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.User == userEntity).Single();
-            var newEndTime = DateTime.Now;
+            var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p == ActiveParking).Single();
+            parkingRegistrationEntity.ParkingEndTime = DateTime.Now;
+            var timeParkedInHours = (parkingRegistrationEntity.ParkingEndTime - parkingRegistrationEntity.ParkingStartTime).TotalHours;
+            parkingRegistrationEntity.ParkingFee = Convert.ToDecimal(timeParkedInHours * 50);
+            ActiveParking = parkingRegistrationEntity;
             db.Update(parkingRegistrationEntity);
             db.SaveChanges();
         }

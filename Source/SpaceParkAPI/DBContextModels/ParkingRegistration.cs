@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SpaceParkApi.DBContextModels
 {
-    class ParkingRegistration
+    public class ParkingRegistration
     {
         public int ParkingRegistrationID { get; set; }
         public User User { get; set; }

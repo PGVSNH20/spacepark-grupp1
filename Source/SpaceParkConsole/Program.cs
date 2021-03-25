@@ -21,7 +21,7 @@ namespace SpaceParkConsole
                 Console.WriteLine($"Welcome {user.name}!");
                 if (registrationController.UserHasActiveParking())
                 {
-                    Console.WriteLine("You have an ongoing parking.\n1: Change time\n2: End parking");
+                    Console.WriteLine($"You have an ongoing parking with end time {registrationController.ActiveParking.ParkingEndTime}.\n1: Change time\n2: End parking");
                     var choice = int.Parse(Console.ReadLine());
                     if (choice == 1)
                     {
@@ -31,6 +31,7 @@ namespace SpaceParkConsole
                     if (choice == 2)
                     {
                         registrationController.EndParkingRegistration();
+                        Console.WriteLine($"Your parking is now ended. Parking fee is {registrationController.ActiveParking.ParkingFee} galactic credits");
                     }
                 }
                 else
@@ -46,10 +47,10 @@ namespace SpaceParkConsole
                     }
                     string chosenSpaceship = Console.ReadLine();
                     Console.WriteLine($"You chose {spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name}");
+                    Console.WriteLine("Enter timespan (hh:mm:ss) to confirm parking length");
 
-                    registrationController.AddParkingRegistration("10:00:00", spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name);
+                    registrationController.AddParkingRegistration(Console.ReadLine(), spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name);
                 }
-
             }
             else
             {
