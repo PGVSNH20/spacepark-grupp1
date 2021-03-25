@@ -41,8 +41,7 @@ namespace SpaceParkApi
 
             try
             {
-
-                var userEntity = db.Users.Where(u => u.name == User.name).Single();
+                var userEntity = db.Users.Where(u => u.name.ToLower() == User.name.ToLower()).Single();
                 parkingRegistration.User = userEntity;
             }
             catch
@@ -54,7 +53,6 @@ namespace SpaceParkApi
             db.SaveChanges();
         }
 
-
         public async Task<Spaceship> GetStarshiptById(int starshipId)
         {
             return await swApi.GetStarshiptById(starshipId);
@@ -63,7 +61,7 @@ namespace SpaceParkApi
         public void UpdateParkingRegistration(string newTime)
         {
             var db = new SpaceParkDbContext();
-            var userEntity = db.Users.Where(u => u.name == User.name).Single();
+            var userEntity = db.Users.Where(u => u.name.ToLower() == User.name.ToLower()).Single();
             var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.User == userEntity).Single();
             var newEndTime = parkingRegistrationEntity.ParkingEndTime + TimeSpan.Parse(newTime);
             if (newEndTime < DateTime.Now)
@@ -80,19 +78,24 @@ namespace SpaceParkApi
             var db = new SpaceParkDbContext();
             try
             {
-                var userEntity = db.Users.Where(u => u.name == User.name).Single();
+                var userEntity = db.Users.Where(u => u.name.ToLower() == User.name.ToLower()).Single();
                 var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.User == userEntity).Single();
                 if (parkingRegistrationEntity.ParkingEndTime < DateTime.Now)
                     return false;
                 else
                     return db.ParkingRegistrations.Contains(parkingRegistrationEntity);
-
             }
             catch { return false; }
         }
+
         public void EndParkingRegistration()
         {
-            throw new NotImplementedException();
+            var db = new SpaceParkDbContext();
+            var userEntity = db.Users.Where(u => u.name == User.name).Single();
+            var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.User == userEntity).Single();
+            var newEndTime = DateTime.Now;
+            db.Update(parkingRegistrationEntity);
+            db.SaveChanges();
         }
     }
 }

@@ -23,16 +23,15 @@ namespace SpaceParkConsole
                 {
                     Console.WriteLine("You have an ongoing parking.\n1: Change time\n2: End parking");
                     var choice = int.Parse(Console.ReadLine());
-                    if(choice == 1)
+                    if (choice == 1)
                     {
                         Console.WriteLine("Enter timespan to extend (+hh:mm:ss) or shorten (-hh:mm:ss) parking");
                         registrationController.UpdateParkingRegistration(Console.ReadLine());
                     }
-                    if(choice == 2)
+                    if (choice == 2)
                     {
                         registrationController.EndParkingRegistration();
                     }
-                    
                 }
 
                 //var foo = Console.ReadLine();
