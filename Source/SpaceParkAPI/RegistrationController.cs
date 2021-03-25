@@ -54,6 +54,7 @@ namespace SpaceParkApi
             db.SaveChanges();
         }
 
+
         public async Task<Spaceship> GetStarshiptById(int starshipId)
         {
             return await swApi.GetStarshiptById(starshipId);
@@ -88,6 +89,10 @@ namespace SpaceParkApi
 
             }
             catch { return false; }
+        }
+        public void EndParkingRegistration()
+        {
+            throw new NotImplementedException();
         }
     }
 }
