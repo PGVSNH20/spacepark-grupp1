@@ -1,7 +1,5 @@
-﻿using RestSharp;
-using SpaceParkApi;
+﻿using SpaceParkApi;
 using SpaceParkApi.Models;
-using SpaceParkApi.SWApiStore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -26,9 +24,9 @@ namespace SpaceParkConsole
                 //    ...
                 //}
 
-                var foo = Console.ReadLine();
-                if (foo == "y")
-                    registrationController.UpdateParkingRegistration("-9:59:00");
+                //var foo = Console.ReadLine();
+                //if (foo == "y")
+                //    registrationController.UpdateParkingRegistration("-9:59:00");
 
                 Console.WriteLine("Chose spaceship to park:");
 
