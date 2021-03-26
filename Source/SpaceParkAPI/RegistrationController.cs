@@ -42,6 +42,7 @@ namespace SpaceParkApi
 
             var db = new SpaceParkDbContext();
             var parkingSpot = db.ParkingSpots.Where(sp => sp == chosenParkingSpot).Single();
+            parkingSpot.IsOccupied = true;
             parkingRegistration.ParkingSpot = parkingSpot;
             try
             {
@@ -105,6 +106,9 @@ namespace SpaceParkApi
             parkingRegistrationEntity.ParkingFee = Convert.ToDecimal(timeParkedInHours * 50);
             ActiveParking = parkingRegistrationEntity;
             db.Update(parkingRegistrationEntity);
+            var parkingSpot = db.ParkingSpots.Where(sp => sp == parkingRegistrationEntity.ParkingSpot).Single();
+            parkingSpot.IsOccupied = false;
+            db.Update(parkingSpot);
             db.SaveChanges();
         }
 
