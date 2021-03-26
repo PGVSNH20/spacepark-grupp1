@@ -24,6 +24,17 @@ namespace SpaceParkApi.Migrations
                 "ALTER TABLE ParkingRegistrations " +
                 "ADD CONSTRAINT FK_ParkingRegistrations_ParkingSpots_ParkingSpotID " +
                 "FOREIGN KEY (ParkingSpotID) REFERENCES ParkingSpots(ParkingSpotID)");
+            migrationBuilder.Sql("INSERT INTO ParkingSpots (Length, Position, IsOccupied) " +
+                "VALUES (100, 101, 0)," +
+                " (100, 102, 0)," +
+                " (100, 103, 0)," +
+                " (100, 104, 0)," +
+                " (100, 105, 0)," +
+                " (500, 106, 0)," +
+                " (500, 107, 0)," +
+                " (500, 108, 0)," +
+                " (1000, 109, 0)," +
+                " (1000, 110, 0)");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
