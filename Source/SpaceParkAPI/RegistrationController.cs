@@ -2,6 +2,7 @@
 using SpaceParkApi.Models;
 using SpaceParkApi.SWApiStore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace SpaceParkApi
         public User User { get; set; }
         private SWApi swApi { get; set; }
         public ParkingRegistration ActiveParking { get; set; }
+        public List<ParkingSpot> FreeSpots { get; set; }
 
         public RegistrationController()
         {
@@ -53,6 +55,7 @@ namespace SpaceParkApi
             db.Add(parkingRegistration);
             db.SaveChanges();
         }
+
 
         public async Task<Spaceship> GetStarshiptById(int starshipId)
         {
@@ -103,6 +106,12 @@ namespace SpaceParkApi
             ActiveParking = parkingRegistrationEntity;
             db.Update(parkingRegistrationEntity);
             db.SaveChanges();
+        }
+        public bool FreeSpotsExists()
+        {
+            var db = new SpaceParkDbContext();
+            FreeSpots = db.ParkingSpots.Where(sp => !sp.IsOccupied).ToList();
+            return FreeSpots.Count == 0 ? false : true;
         }
     }
 }

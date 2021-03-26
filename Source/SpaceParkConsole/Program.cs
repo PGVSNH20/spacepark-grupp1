@@ -36,20 +36,29 @@ namespace SpaceParkConsole
                 }
                 else
                 {
-                    Console.WriteLine("Chose spaceship to park:");
-
-                    var spaceshipOpions = new List<Spaceship>();
-                    foreach (var id in user.starshipsId)
+                    if(registrationController.FreeSpotsExists())
                     {
-                        var spaceship = await registrationController.GetStarshiptById(id);
-                        spaceshipOpions.Add(spaceship);
-                        Console.WriteLine($"{spaceshipOpions.Count}: {spaceship.name}");
-                    }
-                    string chosenSpaceship = Console.ReadLine();
-                    Console.WriteLine($"You chose {spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name}");
-                    Console.WriteLine("Enter timespan (hh:mm:ss) to confirm parking length");
 
-                    registrationController.AddParkingRegistration(Console.ReadLine(), spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name);
+                        Console.WriteLine("Chose spaceship to park:");
+
+                        var spaceshipOpions = new List<Spaceship>();
+                        foreach (var id in user.starshipsId)
+                        {
+                            var spaceship = await registrationController.GetStarshiptById(id);
+                            spaceshipOpions.Add(spaceship);
+                            Console.WriteLine($"{spaceshipOpions.Count}: {spaceship.name}");
+                        }
+                        string chosenSpaceship = Console.ReadLine();
+                        Console.WriteLine($"You chose {spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name}");
+                        Console.WriteLine("Enter timespan (hh:mm:ss) to confirm parking length");
+
+                        registrationController.AddParkingRegistration(Console.ReadLine(), spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No parking spots are available");
+                    }
+
                 }
             }
             else
