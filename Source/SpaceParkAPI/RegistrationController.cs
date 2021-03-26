@@ -1,4 +1,5 @@
-﻿using SpaceParkApi.DBContextModels;
+﻿using Microsoft.EntityFrameworkCore;
+using SpaceParkApi.DBContextModels;
 using SpaceParkApi.Models;
 using SpaceParkApi.SWApiStore;
 using System;
@@ -100,13 +101,13 @@ namespace SpaceParkApi
         public void EndParkingRegistration()
         {
             var db = new SpaceParkDbContext();
-            var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p == ActiveParking).Single();
+            var parkingRegistrationEntity = db.ParkingRegistrations.Where(p => p.ParkingRegistrationID == ActiveParking.ParkingRegistrationID).Include(p => p.ParkingSpot).Single();
             parkingRegistrationEntity.ParkingEndTime = DateTime.Now;
             var timeParkedInHours = (parkingRegistrationEntity.ParkingEndTime - parkingRegistrationEntity.ParkingStartTime).TotalHours;
             parkingRegistrationEntity.ParkingFee = Convert.ToDecimal(timeParkedInHours * 50);
             ActiveParking = parkingRegistrationEntity;
+            var parkingSpot = db.ParkingSpots.Where(sp => sp.ParkingSpotID == parkingRegistrationEntity.ParkingSpot.ParkingSpotID).Single();
             db.Update(parkingRegistrationEntity);
-            var parkingSpot = db.ParkingSpots.Where(sp => sp == parkingRegistrationEntity.ParkingSpot).Single();
             parkingSpot.IsOccupied = false;
             db.Update(parkingSpot);
             db.SaveChanges();

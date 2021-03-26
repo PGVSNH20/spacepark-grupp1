@@ -1,4 +1,4 @@
-﻿# Documentation
+# Documentation
 ### Mob programmnging schema
 |   |  1 |  2 | 3  |  4 |
 |---|---|---|---|---|
@@ -106,3 +106,14 @@ update-database
 * Vi uppdaterade flöde:
   * nu får man val att uppdatera eller avluta aktiv parkering om sånt finns innan man kan skapa ny.
   * man får meddelande med slut belopp after avslutat parkering
+
+### 2021-03-26
+* Vi lade till kod i migrationsfilen UserUpdate som gör att 10 stycken ParkingSpots läggs till i databasen.
+* Vi skapade metoden FreeSpotsExists()
+* Vi ändrade i metoderna:
+  * AddParkingRegistration(); 
+	* Lade till kod som sätter IsOccupied på ParkingSpot till True.
+  * EndParkingRegistration();
+	* Lade till kod som sätter IsOccupied på ParkingSpot till False.
+	* Lade till Include efter Where när vi hämtar ParkingRegistration från databasen. Det behövdes för att ParkingSpot ska följa med.
+* Vi ändrade i flödet så att användaren får välja bland lediga parkeringsplatser. Den skickas sen in i AddParkingRegistration.
