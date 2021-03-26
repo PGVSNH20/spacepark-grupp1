@@ -36,9 +36,8 @@ namespace SpaceParkConsole
                 }
                 else
                 {
-                    if(registrationController.FreeSpotsExists())
+                    if (registrationController.FreeSpotsExists())
                     {
-
                         Console.WriteLine("Chose spaceship to park:");
 
                         var spaceshipOpions = new List<Spaceship>();
@@ -50,15 +49,25 @@ namespace SpaceParkConsole
                         }
                         string chosenSpaceship = Console.ReadLine();
                         Console.WriteLine($"You chose {spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name}");
-                        Console.WriteLine("Enter timespan (hh:mm:ss) to confirm parking length");
 
-                        registrationController.AddParkingRegistration(Console.ReadLine(), spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name);
+                        Console.WriteLine("Chose parking spot:");
+                        foreach (var parkingSpot in registrationController.FreeSpots)
+                        {
+                            Console.WriteLine($" Parking position {parkingSpot.Position} with max length {parkingSpot.Length}");
+                        }
+
+                        var chosenParkingSpotPosition = int.Parse(Console.ReadLine());
+                        var chosenParkingSpot = registrationController.FreeSpots.Find(sp => sp.Position == chosenParkingSpotPosition);
+
+                        Console.WriteLine("Enter timespan (hh:mm:ss) to confirm parking length");
+                        var timeSpan = Console.ReadLine();
+
+                        registrationController.AddParkingRegistration(timeSpan, spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name, chosenParkingSpot);
                     }
                     else
                     {
                         Console.WriteLine("No parking spots are available");
                     }
-
                 }
             }
             else

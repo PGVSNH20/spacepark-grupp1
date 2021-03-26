@@ -29,7 +29,7 @@ namespace SpaceParkApi
             return true;
         }
 
-        public void AddParkingRegistration(string parkingTime, string spaceship)
+        public void AddParkingRegistration(string parkingTime, string spaceship, ParkingSpot chosenParkingSpot)
         {
             ParkingRegistration parkingRegistration = new ParkingRegistration();
             parkingRegistration.ParkingStartTime = DateTime.Now;
@@ -37,11 +37,12 @@ namespace SpaceParkApi
 
             parkingRegistration.ParkingFee = Convert.ToDecimal(TimeSpan.Parse(parkingTime).TotalHours * 50);
             parkingRegistration.IsPaid = false;
-            parkingRegistration.ParkingSpot = new ParkingSpot();
+
             parkingRegistration.SpaceShipName = spaceship;
 
             var db = new SpaceParkDbContext();
-
+            var parkingSpot = db.ParkingSpots.Where(sp => sp == chosenParkingSpot).Single();
+            parkingRegistration.ParkingSpot = parkingSpot;
             try
             {
                 var userEntity = db.Users.Where(u => u.name.ToLower() == User.name.ToLower()).Single();
@@ -55,7 +56,6 @@ namespace SpaceParkApi
             db.Add(parkingRegistration);
             db.SaveChanges();
         }
-
 
         public async Task<Spaceship> GetStarshiptById(int starshipId)
         {
@@ -107,6 +107,7 @@ namespace SpaceParkApi
             db.Update(parkingRegistrationEntity);
             db.SaveChanges();
         }
+
         public bool FreeSpotsExists()
         {
             var db = new SpaceParkDbContext();
