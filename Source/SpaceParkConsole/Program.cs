@@ -57,18 +57,35 @@ namespace SpaceParkConsole
                 Console.WriteLine("User not found! Try again!");
             }
 
-            //Ange om det finns en pågående parkering
+            // KLAR: Ange om det finns en pågående parkering
 
-            //Ge val: starta ny/avsluta pågående/ändra pågående
+            // KLAR: Ge val: starta ny/avsluta pågående/ändra pågående
 
-            //Starta: ange spaceship, visa lediga platser, ange sluttid
-            //Meddela: parkering startad, position, förväntad kostnad
+            // Starta:
+            // KLAR ange spaceship,
+            // ATTGÖRA visa lediga platser,
+            // KLAR ange sluttid
 
-            //Avsluta: ange spaceship
-            //Meddela: slutpris, fakturaadress, betaldatum
+            //Meddela:
+            // KLAR parkering startad,
+            // ATTGÖRA position,
+            // ATTGÖRA förväntad kostnad
 
-            //Ändra: ange spaceship, ny sluttid
-            //Meddela: parkering startad, position, förväntad kostnad
+            //Avsluta:
+            // ATTGÖRA ange spaceship
+            // Meddela:
+            // KLAR slutpris,
+            // ATTGÖRA fakturaadress,
+            // ATTGÖRA betaldatum
+
+            //Ändra:
+            // ATTGÖRA ange spaceship,
+            // KLAR ny sluttid
+
+            //Meddela:
+            // ATTGÖRA parkering startad,
+            // ATTGÖRA position,
+            // ATTGÖRA förväntad kostnad
 
             //var usersList = swapi.GetAllStarShips();
             //var user = await swapi.GetUserById(1);

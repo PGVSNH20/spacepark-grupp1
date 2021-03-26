@@ -15,6 +15,15 @@ namespace SpaceParkApi.Migrations
                 name: "HomeWorld",
                 table: "Users",
                 newName: "homeworld");
+            migrationBuilder.Sql("TRUNCATE Table ParkingRegistrations");
+            migrationBuilder.Sql(
+                "ALTER TABLE ParkingRegistrations " +
+                "DROP CONSTRAINT FK_ParkingRegistrations_ParkingSpots_ParkingSpotID");
+            migrationBuilder.Sql("TRUNCATE Table ParkingSpots");
+            migrationBuilder.Sql(
+                "ALTER TABLE ParkingRegistrations " +
+                "ADD CONSTRAINT FK_ParkingRegistrations_ParkingSpots_ParkingSpotID " +
+                "FOREIGN KEY (ParkingSpotID) REFERENCES ParkingSpots(ParkingSpotID)");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
