@@ -19,6 +19,7 @@ namespace SpaceParkConsole
             {
                 var user = registrationController.User;
                 Console.WriteLine($"Welcome {user.name}!");
+
                 if (registrationController.UserHasActiveParking())
                 {
                     Console.WriteLine($"You have an ongoing parking with end time {registrationController.ActiveParking.ParkingEndTime}.\n1: Change time\n2: End parking");
@@ -38,7 +39,7 @@ namespace SpaceParkConsole
                 {
                     if (registrationController.FreeSpotsExists())
                     {
-                        Console.WriteLine("Chose spaceship to park:");
+                        Console.WriteLine("Choose spaceship to park:");
 
                         var spaceshipOpions = new List<Spaceship>();
                         foreach (var id in user.starshipsId)
@@ -48,16 +49,21 @@ namespace SpaceParkConsole
                             Console.WriteLine($"{spaceshipOpions.Count}: {spaceship.name}");
                         }
                         string chosenSpaceship = Console.ReadLine();
-                        Console.WriteLine($"You chose {spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name}");
+                        Console.WriteLine(
+                            $"You chose {spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].name}, " +
+                            $"length: {spaceshipOpions[Convert.ToInt32(chosenSpaceship) - 1].length}");
 
-                        Console.WriteLine("Chose parking spot:");
+                        Console.WriteLine("Choose parking spot:");
+
                         foreach (var parkingSpot in registrationController.FreeSpots)
                         {
                             Console.WriteLine($" Parking position {parkingSpot.Position} with max length {parkingSpot.Length}");
                         }
 
                         var chosenParkingSpotPosition = int.Parse(Console.ReadLine());
-                        var chosenParkingSpot = registrationController.FreeSpots.Find(sp => sp.Position == chosenParkingSpotPosition);
+                        var chosenParkingSpot =
+                            registrationController.FreeSpots
+                            .Find(sp => sp.Position == chosenParkingSpotPosition);
 
                         Console.WriteLine("Enter timespan (hh:mm:ss) to confirm parking length");
                         var timeSpan = Console.ReadLine();
